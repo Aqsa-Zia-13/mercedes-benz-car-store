@@ -79,18 +79,6 @@ Car/
    - Press `F5` or click **Start**
    - Log in as Admin or Customer using seeded credentials
 
----
-
-## 🖼️ Screenshots
-
-> Add screenshots of your application here
-
-| Customer Dashboard | Admin Dashboard |
-|---|---|
-| _(screenshot)_ | _(screenshot)_ |
-
----
-
 ## 👩‍💻 Developer
 
 **Aqsa**

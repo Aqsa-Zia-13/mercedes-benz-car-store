@@ -1,0 +1,75 @@
+﻿<Window x:Class="Car.Views.ManagerDashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Manager Dashboard — Mercedes-Benz Store"
+        Height="750" Width="1150"
+        WindowStartupLocation="CenterScreen"
+        Background="#F0F4F8">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar -->
+        <DockPanel Grid.Column="0" Background="#0f3460">
+            <StackPanel DockPanel.Dock="Top" Margin="20,30,20,10">
+                <TextBlock Text="MERCEDES-BENZ" FontSize="13"
+                           FontWeight="Bold" Foreground="#5B9BD5"/>
+                <TextBlock Text="STORE" FontSize="10"
+                           Foreground="#4A6A8A" Margin="0,2,0,0"/>
+                <Rectangle Height="1" Fill="#1a4a7a"
+                           Margin="0,14,0,14"/>
+                <TextBlock x:Name="TxtWelcome" Text="Welcome"
+                           FontSize="13" Foreground="White"
+                           TextWrapping="Wrap"/>
+                <TextBlock Text="Manager" FontSize="11"
+                           Foreground="#5B9BD5" Margin="0,3,0,0"/>
+            </StackPanel>
+            <Button DockPanel.Dock="Bottom" Content="⬅  Logout"
+                    FontSize="12" Foreground="#6B8CAE"
+                    Background="Transparent" BorderThickness="0"
+                    HorizontalAlignment="Left" Cursor="Hand"
+                    Margin="20,0,0,24" Click="BtnLogout_Click"/>
+            <StackPanel Margin="0,8,0,0">
+                <Button Content="❓  Customer Queries"
+                        Tag="Queries" Click="NavBtn_Click"
+                        Style="{StaticResource NavBtn}"/>
+                <Button Content="🚗  Car Inventory"
+                        Tag="Inventory" Click="NavBtn_Click"
+                        Style="{StaticResource NavBtn}"/>
+            </StackPanel>
+        </DockPanel>
+
+        <!-- Main -->
+        <Grid Grid.Column="1">
+
+            <!-- QUERIES PANEL -->
+            <DockPanel x:Name="PanelQueries" Visibility="Visible">
+                <Border DockPanel.Dock="Top" Background="White"
+                        BorderBrush="#D8E4F0" BorderThickness="0,0,0,1"
+                        Padding="24,16">
+                    <TextBlock Text="Customer Queries" FontSize="22"
+                               FontWeight="Bold" Foreground="#0f3460"/>
+                </Border>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="QueriesPanel" Margin="24,16"/>
+                </ScrollViewer>
+            </DockPanel>
+
+            <!-- INVENTORY PANEL (view only for manager) -->
+            <DockPanel x:Name="PanelInventory" Visibility="Collapsed">
+                <Border DockPanel.Dock="Top" Background="White"
+                        BorderBrush="#D8E4F0" BorderThickness="0,0,0,1"
+                        Padding="24,16">
+                    <TextBlock Text="Car Inventory (View)"
+                               FontSize="22" FontWeight="Bold"
+                               Foreground="#0f3460"/>
+                </Border>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="InventoryPanel" Margin="24,16"/>
+                </ScrollViewer>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</Window>

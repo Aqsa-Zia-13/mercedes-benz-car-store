@@ -1,0 +1,94 @@
+﻿<Window x:Class="Car.Views.SuperAdminDashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Super Admin Dashboard — Mercedes-Benz Store"
+        Height="750" Width="1200"
+        WindowStartupLocation="CenterScreen"
+        Background="#F0F4F8">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar -->
+        <DockPanel Grid.Column="0" Background="#1b1b2f">
+            <StackPanel DockPanel.Dock="Top" Margin="20,30,20,10">
+                <TextBlock Text="MERCEDES-BENZ" FontSize="13"
+                           FontWeight="Bold" Foreground="#5B9BD5"/>
+                <TextBlock Text="STORE" FontSize="10"
+                           Foreground="#4A6A8A" Margin="0,2,0,0"/>
+                <Rectangle Height="1" Fill="#2a2a44"
+                           Margin="0,14,0,14"/>
+                <TextBlock x:Name="TxtWelcome" Text="Welcome"
+                           FontSize="13" Foreground="White"
+                           TextWrapping="Wrap"/>
+                <TextBlock Text="Super Administrator" FontSize="11"
+                           Foreground="#5B9BD5" Margin="0,3,0,0"/>
+            </StackPanel>
+            <Button DockPanel.Dock="Bottom" Content="⬅  Logout"
+                    FontSize="12" Foreground="#6B8CAE"
+                    Background="Transparent" BorderThickness="0"
+                    HorizontalAlignment="Left" Cursor="Hand"
+                    Margin="20,0,0,24" Click="BtnLogout_Click"/>
+            <StackPanel Margin="0,8,0,0">
+                <Button Content="🚗  All Cars"
+                        Tag="AllCars" Click="NavBtn_Click"
+                        Style="{StaticResource NavBtn}"/>
+                <Button Content="🔧  Flagged Cars"
+                        Tag="Flagged" Click="NavBtn_Click"
+                        Style="{StaticResource NavBtn}"/>
+                <Button Content="👥  All Users"
+                        Tag="Users" Click="NavBtn_Click"
+                        Style="{StaticResource NavBtn}"/>
+            </StackPanel>
+        </DockPanel>
+
+        <!-- Main -->
+        <Grid Grid.Column="1">
+
+            <!-- ALL CARS PANEL -->
+            <DockPanel x:Name="PanelAllCars" Visibility="Visible">
+                <Border DockPanel.Dock="Top" Background="White"
+                        BorderBrush="#D8E4F0" BorderThickness="0,0,0,1"
+                        Padding="24,16">
+                    <TextBlock Text="All Cars — Stock Management"
+                               FontSize="22" FontWeight="Bold"
+                               Foreground="#1b1b2f"/>
+                </Border>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="AllCarsPanel" Margin="24,16"/>
+                </ScrollViewer>
+            </DockPanel>
+
+            <!-- FLAGGED CARS PANEL -->
+            <DockPanel x:Name="PanelFlagged" Visibility="Collapsed">
+                <Border DockPanel.Dock="Top" Background="White"
+                        BorderBrush="#D8E4F0" BorderThickness="0,0,0,1"
+                        Padding="24,16">
+                    <TextBlock Text="Flagged Cars (Needs Repair / Restock)"
+                               FontSize="22" FontWeight="Bold"
+                               Foreground="#1b1b2f"/>
+                </Border>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="FlaggedPanel" Margin="24,16"/>
+                </ScrollViewer>
+            </DockPanel>
+
+            <!-- USERS PANEL -->
+            <DockPanel x:Name="PanelUsers" Visibility="Collapsed">
+                <Border DockPanel.Dock="Top" Background="White"
+                        BorderBrush="#D8E4F0" BorderThickness="0,0,0,1"
+                        Padding="24,16">
+                    <TextBlock Text="All Users"
+                               FontSize="22" FontWeight="Bold"
+                               Foreground="#1b1b2f"/>
+                </Border>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="UsersPanel" Margin="24,16"/>
+                </ScrollViewer>
+            </DockPanel>
+
+        </Grid>
+    </Grid>
+</Window>

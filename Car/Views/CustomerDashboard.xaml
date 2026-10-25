@@ -1,0 +1,235 @@
+﻿<Window x:Class="Car.Views.CustomerDashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Customer Dashboard — Mercedes-Benz Store"
+        Height="750" Width="1200"
+        WindowStartupLocation="CenterScreen"
+        Background="#F0F4F8">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ── SIDEBAR ── -->
+        <DockPanel Grid.Column="0" Background="#1C2B4A">
+
+            <StackPanel DockPanel.Dock="Top" Margin="20,30,20,10">
+                <TextBlock Text="MERCEDES-BENZ" FontSize="13" FontWeight="Bold"
+                           Foreground="#5B9BD5"/>
+                <TextBlock Text="STORE" FontSize="10" Foreground="#4A6A8A"
+                           Margin="0,2,0,0"/>
+                <Rectangle Height="1" Fill="#2E4A7A" Margin="0,14,0,14"/>
+                <TextBlock x:Name="TxtWelcome" Text="Welcome"
+                           FontSize="13" Foreground="White" TextWrapping="Wrap"/>
+                <TextBlock Text="Customer" FontSize="11" Foreground="#5B9BD5"
+                           Margin="0,3,0,0"/>
+            </StackPanel>
+
+            <Button DockPanel.Dock="Bottom" Content="⬅  Logout"
+                    FontSize="12" Foreground="#6B8CAE"
+                    Background="Transparent" BorderThickness="0"
+                    HorizontalAlignment="Left" Cursor="Hand"
+                    Margin="20,0,0,24" Click="BtnLogout_Click"/>
+
+            <!-- Nav buttons -->
+            <StackPanel Margin="0,8,0,0">
+                <Button x:Name="BtnNavBrowse"  Content="🚗  Browse Cars"
+                        Tag="Browse"  Click="NavBtn_Click"
+                        Style="{StaticResource NavBtn}"/>
+                <Button x:Name="BtnNavCart"    Content="🛒  My Cart"
+                        Tag="Cart"    Click="NavBtn_Click"
+                        Style="{StaticResource NavBtn}"/>
+                <Button x:Name="BtnNavOrders"  Content="📦  My Orders"
+                        Tag="Orders"  Click="NavBtn_Click"
+                        Style="{StaticResource NavBtn}"/>
+                <Button x:Name="BtnNavQueries" Content="❓  My Queries"
+                        Tag="Queries" Click="NavBtn_Click"
+                        Style="{StaticResource NavBtn}"/>
+            </StackPanel>
+        </DockPanel>
+
+        <!-- ── MAIN CONTENT (switched by tag) ── -->
+        <Grid Grid.Column="1">
+
+            <!-- ===== BROWSE CARS PANEL ===== -->
+            <DockPanel x:Name="PanelBrowse" Visibility="Visible">
+
+                <!-- Top bar -->
+                <Border DockPanel.Dock="Top" Background="White"
+                        BorderBrush="#D8E4F0" BorderThickness="0,0,0,1"
+                        Padding="24,16">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="120"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Browse Cars" FontSize="22"
+                                   FontWeight="Bold" Foreground="#1C2B4A"
+                                   VerticalAlignment="Center"/>
+                        <Border Grid.Column="1" BorderBrush="#B0C8E0"
+                                BorderThickness="1" CornerRadius="6"
+                                Margin="0,0,10,0">
+                            <TextBox x:Name="TxtSearch"
+                                     Width="220" Background="#F0F6FF"
+                                     Foreground="#1C2B4A" CaretBrush="#1C2B4A"
+                                     BorderThickness="0" FontSize="13"
+                                     Padding="10,8"
+                                     TextChanged="TxtSearch_TextChanged"/>
+                        </Border>
+                        <ComboBox x:Name="CmbFuel" Grid.Column="2"
+                                  FontSize="13" Padding="10,8"
+                                  Margin="0,0,10,0"
+                                  SelectionChanged="CmbFuel_Changed"
+                                  SelectedIndex="0">
+                            <ComboBoxItem Content="All Fuel Types"/>
+                            <ComboBoxItem Content="Petrol"/>
+                            <ComboBoxItem Content="Diesel"/>
+                            <ComboBoxItem Content="Electric"/>
+                        </ComboBox>
+                        <ComboBox x:Name="CmbSort" Grid.Column="3"
+                                  FontSize="13" Padding="10,8"
+                                  SelectionChanged="CmbSort_Changed"
+                                  SelectedIndex="0">
+                            <ComboBoxItem Content="Name"/>
+                            <ComboBoxItem Content="Price ASC"/>
+                            <ComboBoxItem Content="Price DESC"/>
+                            <ComboBoxItem Content="Year"/>
+                        </ComboBox>
+                    </Grid>
+                </Border>
+
+                <!-- Cars Grid -->
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <WrapPanel x:Name="CarCardsPanel"
+                               Margin="20,20,20,20"
+                               Orientation="Horizontal"/>
+                </ScrollViewer>
+            </DockPanel>
+
+            <!-- ===== CART PANEL ===== -->
+            <DockPanel x:Name="PanelCart" Visibility="Collapsed">
+                <Border DockPanel.Dock="Top" Background="White"
+                        BorderBrush="#D8E4F0" BorderThickness="0,0,0,1"
+                        Padding="24,16">
+                    <Grid>
+                        <TextBlock Text="My Cart" FontSize="22"
+                                   FontWeight="Bold" Foreground="#1C2B4A"
+                                   VerticalAlignment="Center"/>
+                        <TextBlock x:Name="TxtCartTotal"
+                                   HorizontalAlignment="Right"
+                                   FontSize="16" FontWeight="Bold"
+                                   Foreground="#2E6DB4"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+                </Border>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="CartItemsPanel" Margin="24,16"/>
+                </ScrollViewer>
+            </DockPanel>
+
+            <!-- ===== ORDERS PANEL ===== -->
+            <DockPanel x:Name="PanelOrders" Visibility="Collapsed">
+                <Border DockPanel.Dock="Top" Background="White"
+                        BorderBrush="#D8E4F0" BorderThickness="0,0,0,1"
+                        Padding="24,16">
+                    <TextBlock Text="My Orders" FontSize="22"
+                               FontWeight="Bold" Foreground="#1C2B4A"/>
+                </Border>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="OrdersPanel" Margin="24,16"/>
+                </ScrollViewer>
+            </DockPanel>
+
+            <!-- ===== QUERIES PANEL ===== -->
+            <DockPanel x:Name="PanelQueries" Visibility="Collapsed">
+                <Border DockPanel.Dock="Top" Background="White"
+                        BorderBrush="#D8E4F0" BorderThickness="0,0,0,1"
+                        Padding="24,16">
+                    <TextBlock Text="My Queries" FontSize="22"
+                               FontWeight="Bold" Foreground="#1C2B4A"/>
+                </Border>
+
+                <!-- Submit new query form (DockPanel docked to top) -->
+                <Border DockPanel.Dock="Top" Background="White"
+                        Margin="24,16,24,0" CornerRadius="10"
+                        BorderBrush="#D8E4F0" BorderThickness="1"
+                        Padding="20">
+                    <StackPanel>
+                        <TextBlock Text="Submit a New Query"
+                                   FontSize="15" FontWeight="Bold"
+                                   Foreground="#1C2B4A" Margin="0,0,0,12"/>
+                        <TextBlock Text="Subject" FontSize="12"
+                                   Foreground="#4A6A8A" Margin="0,0,0,4"/>
+                        <Border BorderBrush="#B0C8E0" BorderThickness="1"
+                                CornerRadius="6" Margin="0,0,0,10">
+                            <TextBox x:Name="TxtQuerySubject"
+                                     Background="#F0F6FF" Foreground="#1C2B4A"
+                                     CaretBrush="#1C2B4A" BorderThickness="0"
+                                     FontSize="13" Padding="10,8" MaxLength="200"/>
+                        </Border>
+                        <TextBlock Text="Message" FontSize="12"
+                                   Foreground="#4A6A8A" Margin="0,0,0,4"/>
+                        <Border BorderBrush="#B0C8E0" BorderThickness="1"
+                                CornerRadius="6" Margin="0,0,0,12">
+                            <TextBox x:Name="TxtQueryMessage"
+                                     Background="#F0F6FF" Foreground="#1C2B4A"
+                                     CaretBrush="#1C2B4A" BorderThickness="0"
+                                     FontSize="13" Padding="10,8"
+                                     Height="80" TextWrapping="Wrap"
+                                     AcceptsReturn="True" MaxLength="2000"/>
+                        </Border>
+                        <Border x:Name="QueryErrorBorder"
+                                Background="#FFF0F0" BorderBrush="#FFB0B0"
+                                BorderThickness="1" CornerRadius="6"
+                                Padding="8,6" Margin="0,0,0,8"
+                                Visibility="Collapsed">
+                            <TextBlock x:Name="TxtQueryError"
+                                       Foreground="#C0392B" FontSize="12"
+                                       TextWrapping="Wrap"/>
+                        </Border>
+                        <Button Content="Submit Query" FontSize="13"
+                                FontWeight="Bold" Foreground="White"
+                                Height="40" Width="160"
+                                HorizontalAlignment="Left"
+                                Cursor="Hand" Click="BtnSubmitQuery_Click">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border x:Name="Bd"
+                                                        Background="#2E6DB4"
+                                                        CornerRadius="6">
+                                                    <ContentPresenter
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter TargetName="Bd"
+                                                                Property="Background"
+                                                                Value="#1C5A9E"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </StackPanel>
+                </Border>
+
+                <!-- Past queries list -->
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,12,0,0">
+                    <StackPanel x:Name="QueriesListPanel" Margin="24,0,24,16"/>
+                </ScrollViewer>
+            </DockPanel>
+
+        </Grid>
+    </Grid>
+</Window>

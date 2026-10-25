@@ -1,0 +1,215 @@
+﻿<Window x:Class="Car.Views.SignUpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Create Account — Mercedes-Benz Store"
+        Height="620" Width="480"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#F4F7FB">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="50,40,50,40">
+
+            <!-- Header -->
+            <TextBlock Text="Create Account"
+                       FontSize="26" FontWeight="Bold"
+                       Foreground="#1C2B4A" Margin="0,0,0,4"/>
+            <TextBlock Text="Fill in your details to register as a customer."
+                       FontSize="13" Foreground="#6B8CAE"
+                       Margin="0,0,0,28"/>
+
+            <!-- Full Name -->
+            <TextBlock Text="Full Name" Foreground="#4A6A8A"
+                       FontSize="12" FontWeight="SemiBold" Margin="0,0,0,6"/>
+            <Border BorderBrush="#B0C8E0" BorderThickness="1"
+                    CornerRadius="6" Margin="0,0,0,16">
+                <TextBox x:Name="TxtFullName"
+                         Background="#FFFFFF"
+                         Foreground="#1C2B4A"
+                         CaretBrush="#1C2B4A"
+                         BorderThickness="0"
+                         FontSize="14" Padding="12,10"
+                         MaxLength="100"/>
+            </Border>
+
+            <!-- Username -->
+            <TextBlock Text="Username" Foreground="#4A6A8A"
+                       FontSize="12" FontWeight="SemiBold" Margin="0,0,0,6"/>
+            <Border BorderBrush="#B0C8E0" BorderThickness="1"
+                    CornerRadius="6" Margin="0,0,0,16">
+                <TextBox x:Name="TxtUsername"
+                         Background="#FFFFFF"
+                         Foreground="#1C2B4A"
+                         CaretBrush="#1C2B4A"
+                         BorderThickness="0"
+                         FontSize="14" Padding="12,10"
+                         MaxLength="50"/>
+            </Border>
+
+            <!-- Email -->
+            <TextBlock Text="Email Address" Foreground="#4A6A8A"
+                       FontSize="12" FontWeight="SemiBold" Margin="0,0,0,6"/>
+            <Border BorderBrush="#B0C8E0" BorderThickness="1"
+                    CornerRadius="6" Margin="0,0,0,16">
+                <TextBox x:Name="TxtEmail"
+                         Background="#FFFFFF"
+                         Foreground="#1C2B4A"
+                         CaretBrush="#1C2B4A"
+                         BorderThickness="0"
+                         FontSize="14" Padding="12,10"
+                         MaxLength="100"/>
+            </Border>
+
+            <!-- Phone -->
+            <TextBlock Text="Phone Number" Foreground="#4A6A8A"
+                       FontSize="12" FontWeight="SemiBold" Margin="0,0,0,6"/>
+            <Border BorderBrush="#B0C8E0" BorderThickness="1"
+                    CornerRadius="6" Margin="0,0,0,16">
+                <TextBox x:Name="TxtPhone"
+                         Background="#FFFFFF"
+                         Foreground="#1C2B4A"
+                         CaretBrush="#1C2B4A"
+                         BorderThickness="0"
+                         FontSize="14" Padding="12,10"
+                         MaxLength="20"/>
+            </Border>
+
+            <!-- Address -->
+            <TextBlock Text="Address" Foreground="#4A6A8A"
+                       FontSize="12" FontWeight="SemiBold" Margin="0,0,0,6"/>
+            <Border BorderBrush="#B0C8E0" BorderThickness="1"
+                    CornerRadius="6" Margin="0,0,0,16">
+                <TextBox x:Name="TxtAddress"
+                         Background="#FFFFFF"
+                         Foreground="#1C2B4A"
+                         CaretBrush="#1C2B4A"
+                         BorderThickness="0"
+                         FontSize="14" Padding="12,10"
+                         MaxLength="255"/>
+            </Border>
+
+            <!-- Password -->
+            <TextBlock Text="Password" Foreground="#4A6A8A"
+                       FontSize="12" FontWeight="SemiBold" Margin="0,0,0,6"/>
+            <Border BorderBrush="#B0C8E0" BorderThickness="1"
+                    CornerRadius="6" Margin="0,0,0,16">
+                <PasswordBox x:Name="TxtPassword"
+                             Background="#FFFFFF"
+                             Foreground="#1C2B4A"
+                             CaretBrush="#1C2B4A"
+                             BorderThickness="0"
+                             FontSize="14" Padding="12,10"
+                             MaxLength="100"/>
+            </Border>
+
+            <!-- Confirm Password -->
+            <TextBlock Text="Confirm Password" Foreground="#4A6A8A"
+                       FontSize="12" FontWeight="SemiBold" Margin="0,0,0,6"/>
+            <Border BorderBrush="#B0C8E0" BorderThickness="1"
+                    CornerRadius="6" Margin="0,0,0,20">
+                <PasswordBox x:Name="TxtConfirmPassword"
+                             Background="#FFFFFF"
+                             Foreground="#1C2B4A"
+                             CaretBrush="#1C2B4A"
+                             BorderThickness="0"
+                             FontSize="14" Padding="12,10"
+                             MaxLength="100"/>
+            </Border>
+
+            <!-- Error box -->
+            <Border x:Name="ErrorBorder"
+                    Background="#FFF0F0"
+                    BorderBrush="#FFB0B0"
+                    BorderThickness="1"
+                    CornerRadius="6"
+                    Padding="10,8"
+                    Margin="0,0,0,12"
+                    Visibility="Collapsed">
+                <TextBlock x:Name="TxtError"
+                           Foreground="#C0392B"
+                           FontSize="12"
+                           TextWrapping="Wrap"/>
+            </Border>
+
+            <!-- Success box -->
+            <Border x:Name="SuccessBorder"
+                    Background="#F0FFF4"
+                    BorderBrush="#A0D8B0"
+                    BorderThickness="1"
+                    CornerRadius="6"
+                    Padding="10,8"
+                    Margin="0,0,0,12"
+                    Visibility="Collapsed">
+                <TextBlock x:Name="TxtSuccess"
+                           Foreground="#1E7A3C"
+                           FontSize="12"
+                           TextWrapping="Wrap"/>
+            </Border>
+
+            <!-- Register Button -->
+            <Button x:Name="BtnRegister"
+                    Content="CREATE ACCOUNT"
+                    FontSize="14" FontWeight="Bold"
+                    Foreground="White"
+                    Height="46"
+                    Cursor="Hand"
+                    Click="BtnRegister_Click"
+                    Margin="0,0,0,12">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="Bd"
+                                            Background="#2E6DB4"
+                                            CornerRadius="6">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Bd" Property="Background" Value="#1C5A9E"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            <!-- Back to login -->
+            <Button Content="← Back to Login"
+                    FontSize="13"
+                    Height="40"
+                    Cursor="Hand"
+                    Click="BtnBack_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="Bd"
+                                            Background="White"
+                                            BorderBrush="#B0C8E0"
+                                            BorderThickness="1"
+                                            CornerRadius="6">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Bd" Property="Background" Value="#EEF4FF"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Foreground" Value="#2E6DB4"/>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+        </StackPanel>
+    </ScrollViewer>
+</Window>

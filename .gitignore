@@ -1,0 +1,8 @@
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.vcxproj*
+*.csproj.user
+*.sln.docstates
